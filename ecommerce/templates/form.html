@@ -1,0 +1,54 @@
+{% load static %}
+{# <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> #}
+<link rel="stylesheet" href=" {% static "css/mdb.css" %} ">
+<link rel="stylesheet" href=" {% static "css/mdb.min.css" %} ">
+<link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.min.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "css/style2.css" %}">
+
+{% load crispy_forms_tags %}
+<body style="
+	background-image: url( {% static "images/img_bg_10.jpg" %} );
+	background-repeat: no-repeat;
+	background-size: cover;">
+
+	{% if messages %}
+		{% for message in messages %}
+		<div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-bottom:0px; text-align:center; ">
+			<p style="text-align:center;margin-bottom:0px">
+			{% if 'safe' in message.tags %}{{message|safe}}
+			{% else %}
+			{{message}}
+			{% endif %}
+			</p>
+  
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    			<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		{% endfor %}
+		{% endif %}
+<div class="wrap">
+	<div class="current-card-form">
+	<div class="new-card-form">
+	<div class="jumbotron" style="background:#fff">
+	<div  class="container">
+		<div class="row">
+			<div  class="col-sm-12" style="margin:0 auto;">
+				<h1>{% if header %}{{header}}{% else %}{% endif %}</h1>
+				<form method="POST">
+				{% csrf_token %}
+				{{form|crispy}}
+
+				<input type="submit" name="" value="{% if submit_btn %}{{submit_btn}}{% else %}Submit{% endif %}" class="btn btn-outline-danger">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

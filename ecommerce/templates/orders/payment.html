@@ -1,0 +1,557 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE HTML>
+<html>
+  <head>
+  <title>Footwear </title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href='{% static "css/bootstrap.min.css" %}'>
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Rokkitt:100,300,400,700" rel="stylesheet">
+  
+    {# <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> #}
+
+  <!-- Animate.css -->
+  <link rel="stylesheet" href=" {% static "css/animate.css" %} ">
+  <!-- Icomoon Icon Fonts-->
+  <link rel="stylesheet" href=" {% static "css/icomoon.css" %} ">
+  <!-- Ion Icon Fonts-->
+  <link rel="stylesheet" href=" {% static "css/ionicons.min.css" %} ">
+  <!-- Bootstrap  -->
+  <link rel="stylesheet" href=" {% static "css/bootstrap.min.css" %} ">
+  <link rel="stylesheet" href=" {% static "css/mdb.css" %} ">
+  <link rel="stylesheet" href=" {% static "css/mdb.min.css" %} ">
+
+  <!-- Magnific Popup -->
+  <link rel="stylesheet" href=" {% static "css/magnific-popup.css" %} ">
+
+  <!-- Flexslider  -->
+  <link rel="stylesheet" href=" {% static "css/flexslider.css" %} ">
+
+  <!-- Owl Carousel -->
+  <link rel="stylesheet" href=" {% static "css/owl.carousel.min.css" %} ">
+  <link rel="stylesheet" href=" {% static "css/owl.theme.default.min.css" %} ">
+  
+  <!-- Date Picker -->
+  <link rel="stylesheet" href=" {% static "css/bootstrap-datepicker.css" %} ">
+  <!-- Flaticons  -->
+  <link rel="stylesheet" href=" {% static "fonts/flaticon/font/flaticon.css" %} ">
+
+  <!-- Theme style  -->
+  <link rel="stylesheet" href=" {% static "css/style.css" %} " >
+
+ <style>
+
+#stripeBtnLabel {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 16px;
+  font-variant: normal;
+  padding: 0;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 500;
+  display: block;
+}
+
+#stripeBtn {
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  text-decoration: none;
+  color: #fff;
+  background: #32325d;
+  white-space: nowrap;
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  text-decoration: none;
+  -webkit-transition: all 150ms ease;
+  transition: all 150ms ease;
+  float: left;
+  width: 100%
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 7px 14px rgba(50, 50, 93, .10), 0 3px 6px rgba(0, 0, 0, .08);
+  background-color: #43458b;
+}
+
+#stripe-form
+{
+
+}
+
+.stripe-form {
+  padding: 5px 30px;
+}
+
+#card-errors {
+  height: 20px;
+  padding: 4px 0;
+  color: #fa755a;
+}
+
+.stripe-form-row {
+  width: 100%;
+  float: left;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/**
+ * The CSS shown here will not be introduced in the Quickstart guide, but shows
+ * how you can use CSS to style your Element's container.
+ */
+.StripeElement {
+  box-sizing: border-box;
+
+  height: 40px;
+
+  padding: 10px 12px;
+
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: white;
+
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+.current-card-form {
+  display: none;
+}
+
+</style>
+
+  </head>
+  <body>
+    
+  <div class="colorlib-loader"></div>
+
+  <div id="page">
+    <nav class="colorlib-nav" role="navigation">
+      <div class="top-menu">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-7 col-md-9">
+              <div id="colorlib-logo"><a href="index.html">Footwear</a></div>
+            </div>
+            <div class="col-sm-5 col-md-3">
+                  <form action="{% url 'search' %}" class="search-wrap">
+                     <div class="form-group">
+                        <input type="search" class="form-control search" placeholder="Search" name="q">
+                        <button class="btn btn-primary submit-search text-center" type="submit"><i class="icon-search"></i></button>
+                     </div>
+                  </form>
+               </div>
+             </div>
+          <div class="row">
+            <div class="col-sm-12 text-left menu-1">
+              <ul>
+                <li class="active"><a href="{% url 'home' %}">Home</a></li>
+                <li class="has-dropdown">
+                  <a href="{% url 'men' %}">Men</a>
+                  <ul class="dropdown">
+                    <li><a href="">Product Detail</a></li>
+                    <li><a href="">Shopping Cart</a></li>
+                    <li><a href="">Checkout</a></li>
+                    <li><a href="">Order Complete</a></li>
+                    <li><a href="">Wishlist</a></li>
+                  </ul>
+                </li>
+                <li><a href="{% url 'women' %}">Women</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+
+                {% if user.is_authenticated %}
+                <li class="cart"><a href="{% url 'auth_logout' %}">Logout </a></li>
+                <li class="cart"><a href=""></a>Account</li>
+                {% else %}
+                <li class="cart"><a href="{% url 'auth_login' %}">Login</a></li>
+                {% endif %}
+
+                <li class="cart"><a href="{% url 'cart' %}"><i class="icon-shopping-cart"></i> Cart <span class="badge badge-pill badge-dark">{{ request.session.items_total }}</span></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sale">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 offset-sm-2 text-center">
+              <div class="row">
+                <div class="owl-carousel2">
+                  <div class="item">
+                    <div class="col">
+                      <h3><a href="#">25% off (Almost) Everything! Use Code: Summer Sale</a></h3>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="col">
+                      <h3><a href="#">Our biggest sale yet 50% off all summer shoes</a></h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- END NAVBAR -->
+    {% if messages %}
+    {% for message in messages %}
+    <div  class="alert {% if 'success' in message.tags %}alert-success{% elif 'warning' in message.tags %}alert-warning{% elif 'error' in message.tags %}alert-danger{% else %}alert-success{% endif %} alert-dismissible fade show" role="alert" style="margin-bottom:0px; text-align:center; ">
+      <p style="text-align:center;margin-bottom:0px">
+      {% if 'safe' in message.tags %}{{message|safe}}
+      {% else %}
+      {{message}}
+      {% endif %}
+      </p>
+  
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <div class="breadcrumbs">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <p class="bread"><span><a href="{% url 'home' %}">Home</a></span> / <span>Checkout - Payment</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="colorlib-product">
+      <div class="container">
+        <div class="row row-pb-lg">
+          <div class="col-sm-10 offset-md-1">
+            <div class="process-wrap">
+              <div class="process text-center active">
+                <p><span>01</span></p>
+                <h3>Shopping Cart</h3>
+              </div>
+              <div class="process text-center active">
+                <p><span>02</span></p>
+                <h3>Checkout</h3>
+              </div>
+              <div class="process text-center">
+                <p><span>03</span></p>
+                <h3>Order Complete</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+    <div class="row">
+      <div class="col-lg-8">
+          <form  method="POST" class="colorlib-form">
+            {% csrf_token %}
+      <h2 class="my-5 h2 text-center">Payment</h2>
+      <div class="row">
+        <div class="col-md-12 mb-4">
+          <div class="card">
+            <script src="https://js.stripe.com/v3/"></script>
+            {% if card %}
+              <div style="padding: 5px 30px;">
+
+
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" name="use_default_card" id="use_default_card">
+                  <label class="custom-control-label" for="use_default_card">Use default card:
+                    **** **** **** {{ card.last4 }} 
+                  <span>Exp: {{ card.exp_month }}/{{ card.exp_year }}</span></label>
+                </div>
+              </div>
+            {% endif %}
+
+            <div class="current-card-form">
+              <form method="POST" class="stripe-form">
+                  {% csrf_token %}
+                  <input type="hidden" name="use_default" value="true">
+                  <div class="stripe-form-row">
+                    <button class="btn btn-default" id="stripeBtn" type="submit">Submit Payment</button>
+                  </div>
+                  <div id="card-errors" role="alert"></div>
+              </form>
+            </div>
+
+            <div class="new-card-form">
+              <form  method="POST" class="stripe-form" id="stripe-form">
+                  {% csrf_token %}
+                  <div class="stripe-form-row" id="creditCard">
+                      <label for="card-element" id="stripeBtnLabel">
+                          Credit or debit card
+                      </label>
+                      <div id="card-element" class="StripeElement StripeElement--empty"><div class="__PrivateStripeElement" style="margin: 0px !important; padding: 0px !important; border: none !important; display: block !important; background: transparent !important; position: relative !important; opacity: 1 !important;"><iframe frameborder="0" allowtransparency="true" scrolling="no" name="__privateStripeFrame5" allowpaymentrequest="true" src="https://js.stripe.com/v3/elements-inner-card-19066928f2ed1ba3ffada645e45f5b50.html#style[base][color]=%2332325d&amp;style[base][fontFamily]=%22Helvetica+Neue%22%2C+Helvetica%2C+sans-serif&amp;style[base][fontSmoothing]=antialiased&amp;style[base][fontSize]=16px&amp;style[base][::placeholder][color]=%23aab7c4&amp;style[invalid][color]=%23fa755a&amp;style[invalid][iconColor]=%23fa755a&amp;componentName=card&amp;wait=false&amp;rtl=false&amp;keyMode=test&amp;origin=https%3A%2F%2Fstripe.com&amp;referrer=https%3A%2F%2Fstripe.com%2Fdocs%2Fstripe-js&amp;controllerId=__privateStripeController1" title="Secure payment input frame" style="border: none !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; height: 19.2px;"></iframe><input class="__PrivateStripeElement-input" aria-hidden="true" aria-label=" " autocomplete="false" maxlength="1" style="border: none !important; display: block !important; position: absolute !important; height: 1px !important; top: 0px !important; left: 0px !important; padding: 0px !important; margin: 0px !important; width: 100% !important; opacity: 0 !important; background: transparent !important; pointer-events: none !important; font-size: 16px !important;"></div></div>
+                  </div>
+                  <div class="stripe-form-row">
+                    <button id="stripeBtn" style="background:#2BBBAD;" type="submit">Submit Payment</button>
+                  </div>
+                </div>
+                  <div class="stripe-form-row">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" name="save" id="save_card_info">
+                      <label class="custom-control-label" style="margin-left:28px;" for="save_card_info">Save for future purchases</label>
+                    </div>
+                  </div>
+                  <div id="card-errors" role="alert"></div>
+                </div>
+              </form>
+            </div>
+
+          </div>
+        </div>
+
+          <div class="col-lg-4">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="cart-detail">
+                    <h2>Cart Total</h2>
+                    {% for item in cart.cartitem_set.all %}
+                    <ul>
+                      <li>
+                        <span>Subtotal</span> <span>$100.00</span>
+                        <ul>
+                          <li><span>{{item.quantity}} x {{ item.product }}</span> <span>N {{item.line_total}}</span></li>
+                        </ul>
+                      </li>
+                      <li><span>Shipping</span> <span>$0.00</span></li>
+                      {% endfor %}
+                      <li><span>Order Total</span> <span>N {{order.get_total}}</span></li>
+                    </ul>
+                    
+                  </div>
+                 </div>
+                  <div class="w-100"></div>
+
+
+              </div>
+              <div class="row">
+                <div class="col-md-12 text-center">
+                  <p><a href="#" class="btn btn-default">Place an order</a></p>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+           
+           
+    <footer id="colorlib-footer" role="contentinfo">
+      <div class="container">
+        <div class="row row-pb-md">
+          <div class="col footer-col colorlib-widget">
+            <h4>About Footwear</h4>
+            <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life</p>
+            <p>
+              <ul class="colorlib-social-icons">
+                <li><a href="https://www.twitter.com/YemiTumininu"><i class="icon-twitter"></i></a></li>
+                <li><a href="#"><i class="icon-facebook"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/olaoluwayemi-rasheed-059216177"><i class="icon-linkedin"></i></a></li>
+                <li><a href="#"><i class="icon-dribbble"></i></a></li>
+              </ul>
+            </p>
+          </div>
+          <div class="col footer-col colorlib-widget">
+            <h4>Customer Care</h4>
+            <p>
+              <ul class="colorlib-footer-links">
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Returns/Exchange</a></li>
+                <li><a href="#">Gift Voucher</a></li>
+                <li><a href="#">Wishlist</a></li>
+                <li><a href="#">Special</a></li>
+                <li><a href="#">Customer Services</a></li>
+                <li><a href="#">Site maps</a></li>
+              </ul>
+            </p>
+          </div>
+          <div class="col footer-col colorlib-widget">
+            <h4>Information</h4>
+            <p>
+              <ul class="colorlib-footer-links">
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Delivery Information</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Support</a></li>
+                <li><a href="#">Order Tracking</a></li>
+              </ul>
+            </p>
+          </div>
+
+          <div class="col footer-col">
+            <h4>News</h4>
+            <ul class="colorlib-footer-links">
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="#">Press</a></li>
+              <li><a href="#">Exhibitions</a></li>
+            </ul>
+          </div>
+
+          <div class="col footer-col">
+            <h4>Contact Information</h4>
+            <ul class="colorlib-footer-links">
+              <li>47 Ilaje Rd, <br> Bariga Lagos 10001</li>
+              <li><a href="tel://+2348114864108">+234 811 486 4108</a></li>
+              <li><a href="mailto:info@yoursite.com">info@yoursite.com</a></li>
+              <li><a href="#">yoursite.com</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="copy">
+        <div class="row">
+          <div class="col-sm-12 text-center">
+            <p>
+              <span><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></span> 
+              <span class="block">Demo Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a> , <a href="http://pexels.com/" target="_blank">Pexels.com</a></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <div class="gototop js-top">
+    <a href="#" class="js-gotop"><i class="ion-ios-arrow-up"></i></a>
+  </div>
+
+<script nonce="">  // Create a Stripe client.
+  var stripe = Stripe('pk_test_N3wRcVV5GmnPBaSJiwbwqVHb00omMk74e1');
+
+  // Create an instance of Elements.
+  var elements = stripe.elements();
+
+  // Custom styling can be passed to options when creating an Element.
+  // (Note that this demo uses a wider set of styles than the guide below.)
+  var style = {
+    base: {
+      color: '#32325d',
+      fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+      fontSmoothing: 'antialiased',
+      fontSize: '16px',
+      '::placeholder': {
+        color: '#aab7c4'
+      }
+    },
+    invalid: {
+      color: '#fa755a',
+      iconColor: '#fa755a'
+    }
+  };
+
+  // Create an instance of the card Element.
+  var card = elements.create('card', {style: style});
+
+  // Add an instance of the card Element into the `card-element` <div>.
+  card.mount('#card-element');
+
+  // Handle real-time validation errors from the card Element.
+  card.addEventListener('change', function(event) {
+    var displayError = document.getElementById('card-errors');
+    if (event.error) {
+      displayError.textContent = event.error.message;
+    } else {
+      displayError.textContent = '';
+    }
+  });
+
+  // Handle form submission.
+  var form = document.getElementById('stripe-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    stripe.createToken(card).then(function(result) {
+      if (result.error) {
+        // Inform the user if there was an error.
+        var errorElement = document.getElementById('card-errors');
+        errorElement.textContent = result.error.message;
+      } else {
+        // Send the token to your server.
+        stripeTokenHandler(result.token);
+      }
+    });
+  });
+
+  // Submit the form with the token ID.
+  function stripeTokenHandler(token) {
+    // Insert the token ID into the form so it gets submitted to the server
+    var form = document.getElementById('stripe-form');
+    var hiddenInput = document.createElement('input');
+    hiddenInput.setAttribute('type', 'hidden');
+    hiddenInput.setAttribute('name', 'stripeToken');
+    hiddenInput.setAttribute('value', token.id);
+    form.appendChild(hiddenInput);
+
+    // Submit the form
+    form.submit();
+  }
+
+
+</script><iframe frameborder="0" allowtransparency="true" scrolling="no" name="__privateStripeController1" allowpaymentrequest="true" src="https://js.stripe.com/v3/controller-e284be06dfdbb32fd443f4521d6d0c69.html#apiKey=pk_test_TYooMQauvdEDq54NiTphI7jx&amp;stripeJsId=54514d87-5d91-4369-b70e-d816a390249d&amp;origin=https%3A%2F%2Fstripe.com&amp;referrer=https%3A%2F%2Fstripe.com%2Fdocs%2Fstripe-js&amp;controllerId=__privateStripeController1" aria-hidden="true" tabindex="-1" style="border: none !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; visibility: hidden !important; position: fixed !important; height: 1px !important; pointer-events: none !important; user-select: none !important;"></iframe>
+
+  <iframe frameborder="0" allowtransparency="true" scrolling="no" name="__privateStripeMetricsController0" allowpaymentrequest="true" src="https://js.stripe.com/v2/m/outer.html#url=https%3A%2F%2Fstripe.com%2Fdocs%2Fstripe-js&amp;title=&amp;referrer=&amp;muid=bcd8819b-4699-43e5-84b6-0d3b0915bf9b&amp;sid=b2aa0068-2048-46e3-a7de-4099050d1e97&amp;preview=true" aria-hidden="true" tabindex="-1" style="border: none !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; visibility: hidden !important; position: fixed !important; height: 1px !important; pointer-events: none !important; user-select: none !important;"></iframe>
+
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <!-- jQuery -->
+  <script src=" {% static "js/jquery.min.js" %} "></script>
+   <!-- popper -->
+   <script src=" {% static "js/popper.min.js" %} "></script>
+   <!-- bootstrap 4.1 -->
+   <script src=" {% static "js/bootstrap.min.js" %} "></script>
+   <!-- jQuery easing -->
+   <script src=" {% static "js/jquery.easing.1.3.js" %} "></script>
+  <!-- Waypoints -->
+  <script src=" {% static "js/jquery.waypoints.min.js" %} "></script>
+  <!-- Flexslider -->
+  <script src=" {% static "js/jquery.flexslider-min.js" %} "></script>
+  <!-- Owl carousel -->
+  <script src=" {% static "js/owl.carousel.min.js" %} "></script>
+  <!-- Magnific Popup -->
+  <script src=" {% static "js/jquery.magnific-popup.min.js" %} "></script>
+  <script src=" {% static "js/magnific-popup-options.js" %} "></script>
+  <!-- Date Picker -->
+  <script src=" {% static "js/bootstrap-datepicker.js" %} "></script>
+  <!-- Stellar Parallax -->
+  <script src=" {% static "js/jquery.stellar.min.js" %} "></script>
+  <!-- Main -->
+  <script src=" {% static "js/main.js" %} "></script>
+
+  </body>
+</html>

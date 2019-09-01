@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="breadcrumbs">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<p class="bread"><span><a href="{% url 'home' %}">Home</a></span> / <span>Search Results</span></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		
+
+
+	<div class="colorlib-product">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 col-xl-3">
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="side border mb-1">
+									<h3>Brand</h3>
+									<ul>
+										<li><a href="{% url 'nike' %}">Nike</a></li>
+										<li><a href="{% url 'adidas' %}">Adidas</a></li>
+										<li><a href="{% url 'gucci' %}">Gucci</a></li>
+										<li><a href="{% url 'givenchy' %}">Givenchy</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-sm-12">
+								<div class="side border mb-1">
+									<h3>Size/Width</h3>
+									<div class="block-26 mb-2">
+										<h4>Size</h4>
+					               <ul>
+					                  <li><a href="#">7</a></li>
+					                  <li><a href="#">7.5</a></li>
+					                  <li><a href="#">8</a></li>
+					                  <li><a href="#">8.5</a></li>
+					                  <li><a href="#">9</a></li>
+					                  <li><a href="#">9.5</a></li>
+					                  <li><a href="#">10</a></li>
+					                  <li><a href="#">10.5</a></li>
+					                  <li><a href="#">11</a></li>
+					                  <li><a href="#">11.5</a></li>
+					                  <li><a href="#">12</a></li>
+					                  <li><a href="#">12.5</a></li>
+					                  <li><a href="#">13</a></li>
+					                  <li><a href="#">13.5</a></li>
+					                  <li><a href="#">14</a></li>
+					               </ul>
+					            </div>
+					           
+								</div>
+							</div>
+							<div class="col-sm-12">
+								<div class="side border mb-1">
+									<h3>Style</h3>
+									<ul>
+										<li><a href="{% url 'slip-ons' %}">Slip Ons</a></li>
+										<li><a href="{% url 'boots' %}">Boots</a></li>
+										<li><a href="{% url 'sandals' %}">Sandals</a></li>
+										<li><a href="{% url 'lace-ups' %}">Lace Ups</a></li>
+										<li><a href="{% url 'oxfords' %}">Oxfords</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-sm-12">
+								<div class="side border mb-1">
+									<h3>Colors</h3>
+									<ul>
+										<li><a href="{% url 'black' %}">Black</a></li>
+										<li><a href="{% url 'white' %}">White</a></li>
+										<li><a href="{% url 'blue' %}">Blue</a></li>
+										<li><a href="{% url 'red' %}">Red</a></li>
+										<li><a href="{% url 'green' %}">Green</a></li>
+										<li><a href="{% url 'grey' %}">Grey</a></li>
+										<li><a href="{% url 'orange' %}">Orange</a></li>
+										<li><a href="{% url 'brown' %}">Brown</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-sm-12">
+								<div class="side border mb-1">
+									<h3>Material</h3>
+									<ul>
+										<li><a href="{% url 'leather' %}">Leather</a></li>
+										<li><a href="{% url 'suede' %}">Suede</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				<div class="col-lg-9 col-xl-9">
+					<h1>Search Results for {{ query }}</h1>
+				<div class="row row-pb-md">
+					{% if products %}
+					{% for product in products %}
+					
+					<div class="col-md-3 col-lg-3 mb-4 text-center">
+						<div class="product-entry border">
+							{% if product.productimage_set.all%}
+							{% for img in product.productimage_set.all %}
+							{% if img.featured %}
+							<a href="{% url 'productDetail' product.slug %}" class="prod-img">
+								<img src="{{img.image.url}}" class="img-fluid" alt="">
+							</a>{% endif %}{% endfor %}{% endif %}
+							<div class="desc">
+								<h2><a href="{% url 'productDetail' product.slug %}">{{product.title}}</a></h2>
+								<span class="price">N {{product.price}}</span>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+					{% else %}
+					<div class="col-md-3 col-lg-3 mb-4 text-center">
+						<div class="product-entry border">
+								<img src="{% static "images/oops.png" %}" class="img-fluid" alt="">
+							<div class="desc">
+								<h2>Your search for "{{query}}" did not match any results.</h2>
+							</div>
+						</div>
+					</div>
+					{% endif %}
+					<div class="w-100"></div>
+					
+				</div>
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<div class="block-27">
+		               <ul>
+			               <li><a href="#"><i class="ion-ios-arrow-back"></i></a></li>
+		                  <li class="active"><span>1</span></li>
+		                  <li><a href="#">2</a></li>
+		                  <li><a href="#">3</a></li>
+		                  <li><a href="#">4</a></li>
+		                  <li><a href="#">5</a></li>
+		                  <li><a href="#"><i class="ion-ios-arrow-forward"></i></a></li>
+		               </ul>
+		            </div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
